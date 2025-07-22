@@ -24,15 +24,21 @@ export const authOptions: AuthOptions  = {
       },
     }),
   ],
-  session: { strategy: "jwt" },
-  secret: process.env.JWT_SECRET,
+  session: { strategy: "jwt", maxAge: 60 * 30, updateAge: 60 * 5 },
+  secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
-    async session({ session, user }) {
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user.id;
+      }
+      return token;
+    },
+    async session({ session, token }) {
       return {
         ...session,
         user: {
           ...session.user!,
-          id: user.id,
+          id: token.id as string,
         },
       };
     },

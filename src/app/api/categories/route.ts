@@ -1,12 +1,12 @@
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth/next";
-import { authOptions } from "../auth/[...nextauth]/route";
 import { prisma } from "@/lib/prisma";
 import { CategoryType } from "@prisma/client";
+import { authOptions } from "../auth/[...nextauth]/route";
 
 export async function GET() {
-  // opcional: protegendo o GET também
   const session = await getServerSession(authOptions);
+  console.log("SESSION NA ROTA /api/categories:", session);
   if (!session?.user?.id) {
     return NextResponse.json({ error: "Não autorizado" }, { status: 401 });
   }

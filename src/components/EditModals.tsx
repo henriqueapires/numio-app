@@ -33,6 +33,7 @@ import {
 } from "@/hooks/useGoals";
 import type { Goal } from "@prisma/client";
 import { TransactionWithCategory } from "@/hooks/useTransactions";
+import { Edit } from "lucide-react";
 
 export function EditTransactionModal({ transaction }: { transaction: TransactionWithCategory }) {
   const [open, setOpen] = useState(false);
@@ -69,7 +70,7 @@ export function EditTransactionModal({ transaction }: { transaction: Transaction
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button size="icon">✏️</Button>
+        <Button size="icon"><Edit/></Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>

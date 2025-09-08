@@ -15,6 +15,7 @@ model User {
   categories   Category[]
   transactions Transaction[]
   goals        Goal[]
+  monthlyLimit   Float?
 }
 
 model Category {

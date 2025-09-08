@@ -1,13 +1,18 @@
-import { QueryProvider } from "@/components/QueryProvider";
 import "./globals.css";
+import { Providers } from "./providers";  
+
+export const metadata = {
+  title: "Numio",
+  description: "Controle suas finanças pessoais",
+};
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="pt-br">
+    <html lang="pt-BR" suppressHydrationWarning>
       <body>
-        <QueryProvider>
+        <Providers>
           {children}
-        </QueryProvider>
+        </Providers>
       </body>
     </html>
   );

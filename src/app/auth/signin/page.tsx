@@ -1,4 +1,3 @@
-// src/app/auth/signin/page.tsx
 "use client";
 
 import { useState } from "react";
@@ -16,7 +15,7 @@ export default function SignInPage() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
 
-  const callbackUrl = params.get("callbackUrl") || "/";
+  const callbackUrl = params.get("callbackUrl") || "/dashboard";
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -64,9 +63,7 @@ export default function SignInPage() {
                 required
               />
             </div>
-            {error && (
-              <p className="text-sm text-red-600">{error}</p>
-            )}
+            {error && <p className="text-sm text-red-600">{error}</p>}
             <Button type="submit" className="w-full">
               Entrar
             </Button>

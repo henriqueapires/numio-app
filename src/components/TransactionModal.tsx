@@ -63,7 +63,7 @@ export function TransactionModal() {
         <DialogHeader>
           <DialogTitle>Nova Transação</DialogTitle>
           <DialogDescription>
-            Preencha os dados para adicionar uma nova transação.
+            Preencha os dados para adicionar uma nova transação
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4">

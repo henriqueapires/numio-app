@@ -21,29 +21,27 @@ export function LimitModal() {
   const { mutate: updateLimit, status } = useUpdateUserLimit();
 
   const [open, setOpen] = useState(false);
-  const [value, setValue] = useState<number>(0);
+  const [value, setValue] = useState<string>("");
 
-  // quando abrir o modal, popula com o valor atual
   useEffect(() => {
-    if (limit != null) setValue(limit);
+    if (open) setValue(limit != null ? String(limit) : "");
   }, [limit, open]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    updateLimit(
-      { monthlyLimit: value },
-      { onSuccess: () => setOpen(false) }
-    );
+    const numeric = parseFloat(value.replace(",", ".")); // aceita vírgula
+    if (Number.isNaN(numeric) || numeric < 0) return; // pode exibir erro/toast aqui
+    updateLimit({ monthlyLimit: numeric }, { onSuccess: () => setOpen(false) });
   };
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button
-              variant="secondary"
-              size="sm"
-              className="w-full bg-white/20 hover:bg-white/30 text-white border-white/30 backdrop-blur-sm transition-all duration-200 hover:scale-105"
-            >
+          variant="secondary"
+          size="sm"
+          className="w-full bg-white/20 hover:bg-white/30 text-white border-white/30 backdrop-blur-sm transition-all duration-200 hover:scale-105"
+        >
           Ajustar limite
         </Button>
       </DialogTrigger>
@@ -59,16 +57,22 @@ export function LimitModal() {
             <Label htmlFor="limit">Limite (R$)</Label>
             <Input
               id="limit"
-              type="number"
-              step="0.01"
+              type="text"
+              inputMode="decimal"
+              pattern="[0-9]*[.,]?[0-9]*"
               value={value}
-              onChange={(e) => setValue(parseFloat(e.target.value))}
+              onChange={(e) => setValue(e.target.value)}
+              onBlur={() => {
+                if (value === "") return;
+                const n = parseFloat(value.replace(",", "."));
+                if (!Number.isNaN(n)) setValue(n.toFixed(2));
+              }}
               required
             />
           </div>
           <DialogFooter>
-            <Button disabled={status==="pending"} type="submit">
-              {status==="pending" ? "Salvando…" : "Salvar Limite"}
+            <Button disabled={status === "pending"} type="submit">
+              {status === "pending" ? "Salvando…" : "Salvar Limite"}
             </Button>
           </DialogFooter>
         </form>

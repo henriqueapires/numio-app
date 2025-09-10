@@ -59,7 +59,9 @@ export function CategoryModal() {
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <Label htmlFor="cat-name">Nome</Label>
+            <Label htmlFor="cat-name" className="pb-2">
+              Nome
+            </Label>
             <Input
               id="cat-name"
               type="text"
@@ -69,8 +71,13 @@ export function CategoryModal() {
             />
           </div>
           <div>
-            <Label htmlFor="cat-type">Tipo</Label>
-            <Select value={type} onValueChange={(v) => setType(v as CategoryType)}>
+            <Label htmlFor="cat-type" className="pb-2">
+              Tipo
+            </Label>
+            <Select
+              value={type}
+              onValueChange={(v) => setType(v as CategoryType)}
+            >
               <SelectTrigger id="cat-type">
                 <SelectValue placeholder="Selecione o tipo" />
               </SelectTrigger>

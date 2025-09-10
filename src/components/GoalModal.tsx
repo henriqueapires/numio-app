@@ -50,13 +50,13 @@ export function GoalModal() {
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Nova Meta</DialogTitle>
-          <DialogDescription>
-            Defina uma meta financeira.
-          </DialogDescription>
+          <DialogDescription>Defina uma meta financeira.</DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <Label htmlFor="goal-title">Título</Label>
+            <Label htmlFor="goal-title" className="pb-2">
+              Título
+            </Label>
             <Input
               id="goal-title"
               type="text"
@@ -66,7 +66,9 @@ export function GoalModal() {
             />
           </div>
           <div>
-            <Label htmlFor="goal-amount">Valor Alvo (R$)</Label>
+            <Label htmlFor="goal-amount" className="pb-2">
+              Valor Alvo (R$)
+            </Label>
             <Input
               id="goal-amount"
               type="number"
@@ -77,7 +79,9 @@ export function GoalModal() {
             />
           </div>
           <div>
-            <Label htmlFor="goal-due">Data Limite</ Label>
+            <Label htmlFor="goal-due" className="pb-2">
+              Data Limite
+            </Label>
             <Input
               id="goal-due"
               type="date"

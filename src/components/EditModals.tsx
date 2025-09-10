@@ -79,7 +79,7 @@ export function EditTransactionModal({ transaction }: { transaction: Transaction
         </DialogHeader>
         <form onSubmit={handleUpdate} className="space-y-4">
           <div>
-            <Label htmlFor="edit-amount">Valor (R$)</Label>
+            <Label htmlFor="edit-amount" className="pb-2">Valor (R$)</Label>
             <Input
               id="edit-amount"
               type="number"
@@ -90,7 +90,7 @@ export function EditTransactionModal({ transaction }: { transaction: Transaction
             />
           </div>
           <div>
-            <Label htmlFor="edit-date">Data</Label>
+            <Label htmlFor="edit-date" className="pb-2">Data</Label>
             <Input
               id="edit-date"
               type="date"
@@ -100,7 +100,7 @@ export function EditTransactionModal({ transaction }: { transaction: Transaction
             />
           </div>
           <div>
-            <Label htmlFor="edit-category">Categoria</Label>
+            <Label htmlFor="edit-category" className="pb-2">Categoria</Label>
             <Select value={categoryId} onValueChange={setCategoryId}>
               <SelectTrigger id="edit-category">
                 <SelectValue placeholder="Selecione…" />
@@ -115,7 +115,7 @@ export function EditTransactionModal({ transaction }: { transaction: Transaction
             </Select>
           </div>
           <div>
-            <Label htmlFor="edit-description">Descrição</Label>
+            <Label htmlFor="edit-description" className="pb-2">Descrição</Label>
             <Input
               id="edit-description"
               type="text"
@@ -184,7 +184,7 @@ export function EditGoalModal({ goal }: { goal: Goal }) {
         </DialogHeader>
         <form onSubmit={handleUpdate} className="space-y-4">
           <div>
-            <Label htmlFor="edit-goal-title">Título</Label>
+            <Label htmlFor="edit-goal-title" className="pb-2">Título</Label>
             <Input
               id="edit-goal-title"
               type="text"
@@ -194,7 +194,7 @@ export function EditGoalModal({ goal }: { goal: Goal }) {
             />
           </div>
           <div>
-            <Label htmlFor="edit-goal-target">Valor Alvo (R$)</Label>
+            <Label htmlFor="edit-goal-target" className="pb-2">Valor Alvo (R$)</Label>
             <Input
               id="edit-goal-target"
               type="number"
@@ -205,7 +205,7 @@ export function EditGoalModal({ goal }: { goal: Goal }) {
             />
           </div>
           <div>
-            <Label htmlFor="edit-goal-current">Valor Atual (R$)</Label>
+            <Label htmlFor="edit-goal-current" className="pb-2">Valor Atual (R$)</Label>
             <Input
               id="edit-goal-current"
               type="number"
@@ -215,7 +215,7 @@ export function EditGoalModal({ goal }: { goal: Goal }) {
             />
           </div>
           <div>
-            <Label htmlFor="edit-goal-due">Data Limite</Label>
+            <Label htmlFor="edit-goal-due" className="pb-2">Data Limite</Label>
             <Input
               id="edit-goal-due"
               type="date"

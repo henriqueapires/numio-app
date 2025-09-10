@@ -68,7 +68,9 @@ export function TransactionModal() {
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <Label htmlFor="amount">Valor (R$)</Label>
+            <Label htmlFor="amount" className="pb-2">
+              Valor (R$)
+            </Label>
             <Input
               id="amount"
               type="number"
@@ -79,7 +81,9 @@ export function TransactionModal() {
             />
           </div>
           <div>
-            <Label htmlFor="date">Data</Label>
+            <Label htmlFor="date" className="pb-2">
+              Data
+            </Label>
             <Input
               id="date"
               type="date"
@@ -89,7 +93,9 @@ export function TransactionModal() {
             />
           </div>
           <div>
-            <Label htmlFor="category">Categoria</Label>
+            <Label htmlFor="category" className="pb-2">
+              Categoria
+            </Label>
             <Select value={categoryId} onValueChange={setCategoryId}>
               <SelectTrigger id="category">
                 <SelectValue placeholder="Selecione…" />
@@ -104,7 +110,9 @@ export function TransactionModal() {
             </Select>
           </div>
           <div>
-            <Label htmlFor="description">Descrição</Label>
+            <Label htmlFor="description" className="pb-2">
+              Descrição
+            </Label>
             <Input
               id="description"
               type="text"
@@ -114,7 +122,7 @@ export function TransactionModal() {
           </div>
           <DialogFooter>
             <Button type="submit" disabled={createTx.status === "pending"}>
-            {createTx.status === "pending" ? "Salvando…" : "Salvar"}
+              {createTx.status === "pending" ? "Salvando…" : "Salvar"}
             </Button>
           </DialogFooter>
         </form>

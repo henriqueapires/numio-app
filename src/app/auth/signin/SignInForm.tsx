@@ -35,7 +35,9 @@ export default function SignInForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <div>
-        <Label htmlFor="email">Email</Label>
+        <Label htmlFor="email" className="pb-2">
+          Email
+        </Label>
         <Input
           id="email"
           type="email"
@@ -45,7 +47,9 @@ export default function SignInForm() {
         />
       </div>
       <div>
-        <Label htmlFor="password">Senha</Label>
+        <Label htmlFor="password" className="pb-2">
+          Senha
+        </Label>
         <Input
           id="password"
           type="password"

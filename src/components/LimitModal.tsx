@@ -29,8 +29,8 @@ export function LimitModal() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const numeric = parseFloat(value.replace(",", ".")); // aceita vírgula
-    if (Number.isNaN(numeric) || numeric < 0) return; // pode exibir erro/toast aqui
+    const numeric = parseFloat(value.replace(",", "."));
+    if (Number.isNaN(numeric) || numeric < 0) return;
     updateLimit({ monthlyLimit: numeric }, { onSuccess: () => setOpen(false) });
   };
 

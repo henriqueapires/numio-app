@@ -1,97 +1,33 @@
-"use client";
-
-import { useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
-import { signIn } from "next-auth/react";
+import { Suspense } from "react";
+import Image from "next/image";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { Label } from "@/components/ui/label";
+import SignInForm from "./SignInForm";
 
 export default function SignInPage() {
-  const router = useRouter();
-  const params = useSearchParams();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState<string | null>(null);
-
-  const callbackUrl = params.get("callbackUrl") || "/dashboard";
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError(null);
-
-    const res = await signIn("credentials", {
-      redirect: false,
-      email,
-      password,
-      callbackUrl,
-    });
-
-    if (res?.error) {
-      setError("Credenciais inválidas");
-    } else {
-      router.push(callbackUrl);
-    }
-  };
-
   return (
     <div className="grid grid-cols-2 items-center justify-center h-screen bg-background">
-      <div className="w-full h-screen flex items-center justify-center p-8 text-white border-r dark:border-slate-900 border-slate-200 ">
-        <img
-          src="/numio-logo2.png"
-          alt="Numio Logo"
-          className="w-78 inline-block dark:hidden"
-        />
-        <img
+      <div className="w-full h-screen flex items-center justify-center p-8 text-white border-r dark:border-slate-900 border-slate-200">
+        <Image
           src="/numio-logo1.png"
           alt="Numio Logo"
-          className="w-78 hidden dark:inline-block"
+          width={312}
+          height={96}
         />
       </div>
+
       <Card className="w-full max-w-md m-auto">
         <CardHeader>
           <CardTitle>Entrar no Numio</CardTitle>
         </CardHeader>
+
         <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div>
-              <Label htmlFor="email" className="pb-2">
-                Email
-              </Label>
-              <Input
-                id="email"
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-            </div>
-            <div>
-              <Label htmlFor="password" className="pb-2">
-                Senha
-              </Label>
-              <Input
-                id="password"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
-            </div>
-            {error && <p className="text-sm text-red-600">{error}</p>}
-            <Button type="submit" className="w-full">
-              Entrar
-            </Button>
-          </form>
-          <div className="mt-4 text-center">
-            <a
-              href="/auth/register"
-              className="text-sm text-primary hover:underline"
-            >
-              Não tem uma conta? Registre-se
-            </a>
-          </div>
+          <Suspense
+            fallback={
+              <div className="text-sm text-muted-foreground">Carregando…</div>
+            }
+          >
+            <SignInForm />
+          </Suspense>
         </CardContent>
       </Card>
     </div>

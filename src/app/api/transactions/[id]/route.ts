@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
-import { getServerSession } from "next-auth/next";
+import { getServerSession } from "next-auth";
 import { prisma } from "@/lib/prisma";
-import { authOptions } from "../../auth/[...nextauth]/route";
+import { authOptions } from "@/lib/auth";
 
 export async function DELETE(
   _request: Request,
@@ -51,9 +51,11 @@ export async function PUT(
   });
 
   if (updated.count === 0) {
-    return NextResponse.json({ error: "Transação não encontrada" }, { status: 404 });
+    return NextResponse.json(
+      { error: "Transação não encontrada" },
+      { status: 404 }
+    );
   }
 
   return NextResponse.json({ success: true });
 }
-

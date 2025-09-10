@@ -1,11 +1,12 @@
 import { NextResponse } from "next/server";
-import { getServerSession } from "next-auth/next";
+import { getServerSession } from "next-auth";
 import { prisma } from "@/lib/prisma";
-import { authOptions } from "../../auth/[...nextauth]/route";
+import { authOptions } from "@/lib/auth";
 
 export async function GET() {
   const session = await getServerSession(authOptions);
-  if (!session?.user?.id) return NextResponse.json({ error: "Não autorizado" }, { status: 401 });
+  if (!session?.user?.id)
+    return NextResponse.json({ error: "Não autorizado" }, { status: 401 });
 
   const user = await prisma.user.findUnique({
     where: { id: session.user.id },
@@ -16,7 +17,8 @@ export async function GET() {
 
 export async function PUT(request: Request) {
   const session = await getServerSession(authOptions);
-  if (!session?.user?.id) return NextResponse.json({ error: "Não autorizado" }, { status: 401 });
+  if (!session?.user?.id)
+    return NextResponse.json({ error: "Não autorizado" }, { status: 401 });
 
   const { monthlyLimit } = (await request.json()) as { monthlyLimit: number };
   if (monthlyLimit < 0) {

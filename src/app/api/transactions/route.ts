@@ -1,12 +1,12 @@
 import { NextResponse } from "next/server";
-import { getServerSession } from "next-auth/next";
-import { authOptions } from "../auth/[...nextauth]/route";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { CategoryType } from "@prisma/client";
 
 type TransactionBody = {
   amount: number;
-  date: string;         
+  date: string;
   description?: string;
   categoryId: string;
 };
@@ -44,11 +44,16 @@ export async function POST(request: Request) {
     select: { type: true },
   });
   if (!category) {
-    return NextResponse.json({ error: "Categoria não encontrada" }, { status: 400 });
+    return NextResponse.json(
+      { error: "Categoria não encontrada" },
+      { status: 400 }
+    );
   }
 
   const finalAmount =
-    category.type === CategoryType.EXPENSE ? -Math.abs(amount) : Math.abs(amount);
+    category.type === CategoryType.EXPENSE
+      ? -Math.abs(amount)
+      : Math.abs(amount);
 
   const tx = await prisma.transaction.create({
     data: {

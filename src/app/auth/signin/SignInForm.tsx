@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { signIn } from "next-auth/react";
+import Link from "next/link";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
@@ -61,6 +62,9 @@ export default function SignInForm() {
       {error && <p className="text-sm text-red-600">{error}</p>}
       <Button type="submit" className="w-full">
         Entrar
+      </Button>
+      <Button asChild variant="ghost">
+        <Link href="/auth/register">Não possui uma conta? Crie aqui</Link>
       </Button>
     </form>
   );

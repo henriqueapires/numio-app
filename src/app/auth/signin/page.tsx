@@ -5,11 +5,19 @@ import SignInForm from "./SignInForm";
 
 export default function SignInPage() {
   return (
-    <div className="grid grid-cols-2 items-center justify-center h-screen bg-background">
-      <div className="w-full h-screen flex items-center justify-center p-8 text-white border-r dark:border-slate-900 border-slate-200">
+    <div className="grid md:grid-cols-2 items-center justify-center md:h-screen bg-background">
+      <div className="w-full md:flex items-center justify-center p-8 text-white border-r dark:border-slate-900 md:border-slate-200">
+        <Image
+          src="/numio-logo2.png"
+          alt="Numio Logo"
+          className="dark:hidden block"
+          width={312}
+          height={96}
+        />
         <Image
           src="/numio-logo1.png"
           alt="Numio Logo"
+          className="hidden dark:block"
           width={312}
           height={96}
         />

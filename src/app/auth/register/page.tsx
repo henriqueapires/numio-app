@@ -3,13 +3,14 @@
 import { useState } from "react";
 import { registerAndLogin } from "@/lib/actions/auth";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
-import { ArrowLeftCircle } from "lucide-react";
+import { ArrowLeft, ArrowLeftCircle } from "lucide-react";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -35,25 +36,33 @@ export default function RegisterPage() {
     }
   };
   return (
-    <div className="grid grid-cols-2 items-center justify-center h-screen bg-background">
-      <div className="w-full h-screen flex items-center justify-center p-8 text-white border-r dark:border-slate-900 border-slate-200 ">
-        <img
+    <div className="grid md:grid-cols-2 items-center justify-center md:h-screen bg-background">
+      <div className="w-full md:flex items-center justify-center p-8 text-white border-r dark:border-slate-900 md:border-slate-200">
+        <Image
           src="/numio-logo2.png"
           alt="Numio Logo"
-          className="w-78 inline-block dark:hidden"
+          className="dark:hidden block"
+          width={312}
+          height={96}
         />
-        <img
+        <Image
           src="/numio-logo1.png"
           alt="Numio Logo"
-          className="w-78 hidden dark:inline-block"
+          className="hidden dark:block"
+          width={312}
+          height={96}
         />
       </div>
       <Card className="w-full max-w-md m-auto">
         <CardHeader>
-          <Button variant="link" asChild className="absolute top-4 left-4">
-            <Link href="/auth/signin">Voltar</Link>
-          </Button>
-          <CardTitle>Registrar no Numio</CardTitle>
+          <CardTitle className="flex items-center">
+            <Button variant="link" asChild>
+              <Link href="/auth/signin">
+                <ArrowLeft />
+              </Link>
+            </Button>
+            Registrar no Numio
+          </CardTitle>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">

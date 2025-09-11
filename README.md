@@ -11,7 +11,7 @@ Aplicação web para gestão de finanças pessoais. Cadastre **transações**, *
 ![shadcn/ui](https://img.shields.io/badge/UI-shadcn%2Fui-111827)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
-Deploy link: https://numioapp.vercel.app/auth/signin
+Deploy link: https://numioapp.vercel.app
 
 ---
 
